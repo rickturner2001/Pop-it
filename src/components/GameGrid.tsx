@@ -56,9 +56,6 @@ const GameGrid = ({
     }
   }, [active, inGameState]);
 
-  console.log("Current Sequence: ");
-  console.log(currentLevel.sequences);
-
   return (
     <div className="relative w-full h-full">
       <div className="absolute p-12 bottom-0 right-0 flex flex-col">
@@ -75,7 +72,6 @@ const GameGrid = ({
               setPressed((prev) => prev.slice(0, prev.length - 1));
             } else if (e.key === "Enter") {
               if (arraysAreEqual(currentSequence, adjustPressedKeys(pressed))) {
-                console.log("Sequence is correct");
                 setCurrentSequence(currentLevel.updateSequence());
                 setIngameState(InGameState.SHOWING);
                 setActive(null);
@@ -102,11 +98,6 @@ const GameGrid = ({
               }
             } else {
               if (["a", "s", "d", "f"].includes(e.key)) {
-                console.log(
-                  "Condition:  " +
-                    (pressed.length < currentSequence.length ? "True" : "False")
-                );
-
                 if (pressed.length < currentSequence.length) {
                   setPressed((prev) => [...prev, e.key.toUpperCase()]);
                   setCurrentPress(e.key.toUpperCase());
